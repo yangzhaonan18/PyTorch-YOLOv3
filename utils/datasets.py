@@ -12,11 +12,11 @@ from torch.utils.data import Dataset
 import torchvision.transforms as transforms
 
 
-def pad_to_square(img, pad_value):
+def pad_to_square(img, pad_value):  # 图片填充到方形分辨率
     c, h, w = img.shape
-    dim_diff = np.abs(h - w)
+    dim_diff = np.abs(h - w)  # 高宽 之差
     # (upper / left) padding and (lower / right) padding
-    pad1, pad2 = dim_diff // 2, dim_diff - dim_diff // 2
+    pad1, pad2 = dim_diff // 2, dim_diff - dim_diff // 2   # 很巧妙的使用，其实就是（一定满足） pad1+ pad2 = 高宽差
     # Determine padding
     pad = (0, 0, pad1, pad2) if h <= w else (pad1, pad2, 0, 0)
     # Add padding
